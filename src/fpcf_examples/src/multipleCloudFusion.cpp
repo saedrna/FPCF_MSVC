@@ -64,11 +64,11 @@ std::vector<std::string> filenames;
 namespace fs = boost::filesystem;
 
 // parameters
-const float FILTER_DISTANCE = 1.5;
-const float VOXEL_LEAF_SIZE = 0.01f;
+const float FILTER_DISTANCE = 70.0;
+const float VOXEL_LEAF_SIZE = 0.1f;
 const int MAX_PLANE_SIZE = 1000;
-const float NOISE_OUTLINER_RADIUS = 0.02f;
-const float DESCRIPTOR_RADIUS = 0.035f;
+const float NOISE_OUTLINER_RADIUS = 0.5f;
+const float DESCRIPTOR_RADIUS = 1.0f;
 
 int parseArgs (int argc, char **argv)
 {
@@ -107,16 +107,16 @@ int main (int argc, char** argv)
     fpcf::fpcfPointCloudPreparation<PointType, DescriptorType>::Ptr fpcfPointCloudPreparator(new fpcf::fpcfPointCloudPreparation<PointType, DescriptorType>());
 
     // uncomment to use the persistent features computation:
-        //fpcfPointCloudPreparator->calculatePersistentFeature(true);
+    fpcfPointCloudPreparator->calculatePersistentFeature(true);
 
     // add filters
     fpcf::fpcfVoxelDownsampling<PointType, DescriptorType>::Ptr fpcfDownsampler(new fpcf::fpcfVoxelDownsampling<PointType, DescriptorType>(VOXEL_LEAF_SIZE));
-    fpcf::fpcfDistanceFilter<PointType, DescriptorType>::Ptr fpcfDistanceFilter(new fpcf::fpcfDistanceFilter<PointType, DescriptorType>(fpcf::Direction::Z, FILTER_DISTANCE));
+    // fpcf::fpcfDistanceFilter<PointType, DescriptorType>::Ptr fpcfDistanceFilter(new fpcf::fpcfDistanceFilter<PointType, DescriptorType>(fpcf::Direction::Z, FILTER_DISTANCE));
     fpcf::fpcfPlaneFilter<PointType, DescriptorType>::Ptr fpcfPlaneFilter(new fpcf::fpcfPlaneFilter<PointType, DescriptorType>(MAX_PLANE_SIZE));
     fpcf::fpcfNoiseFilter<PointType, DescriptorType>::Ptr fpcfNoiseFilter(new fpcf::fpcfNoiseFilter<PointType, DescriptorType>(NOISE_OUTLINER_RADIUS));
 
     fpcfPointCloudPreparator->addFilter(fpcfDownsampler);
-    fpcfPointCloudPreparator->addFilter(fpcfDistanceFilter);
+    // fpcfPointCloudPreparator->addFilter(fpcfDistanceFilter);
     fpcfPointCloudPreparator->addFilter(fpcfPlaneFilter);
     fpcfPointCloudPreparator->addFilter(fpcfNoiseFilter);
 
@@ -125,8 +125,8 @@ int main (int argc, char** argv)
         //fpcf::fpcfNarfKeypoint<PointType, DescriptorType>::Ptr fpcfNarfKeypointDetector(new fpcf::fpcfNarfKeypoint<PointType, DescriptorType>());
         //fpcfPointCloudPreparator->setDetector(fpcfNarfKeypointDetector);
     // uncomment to use the SIFT keypoint detector:
-        //fpcf::fpcfSiftKeypoint<PointType, DescriptorType>::Ptr fpcfSiftKeypointDetector(new fpcf::fpcfSiftKeypoint<PointType, DescriptorType>());
-        //fpcfPointCloudPreparator->setDetector(fpcfSiftKeypointDetector);
+    fpcf::fpcfSiftKeypoint<PointType, DescriptorType>::Ptr fpcfSiftKeypointDetector(new fpcf::fpcfSiftKeypoint<PointType, DescriptorType>());
+    fpcfPointCloudPreparator->setDetector(fpcfSiftKeypointDetector);
 
     // set point descriptor
     fpcf::fpcfFPFHDescriptor<PointType>::Ptr fpcfFPFHDescriptor(new fpcf::fpcfFPFHDescriptor<PointType>(DESCRIPTOR_RADIUS));
