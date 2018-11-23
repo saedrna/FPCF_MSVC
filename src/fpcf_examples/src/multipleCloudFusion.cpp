@@ -49,12 +49,19 @@
 #include <fpcf/registration/features/descriptors/fpcfFPFHDescriptor.h>
 #include <fpcf/tools/fpcfVisualizer.h>
 
+#include <pcl/io/pcd_io.h>
+
 using namespace std;
 
 typedef pcl::PointXYZRGBA PointType;
 typedef pcl::FPFHSignature33 DescriptorType;
 
 vector<fpcf::fpcfPointCloudData<PointType, DescriptorType>::Ptr> pointClouds;
+
+// original directory
+std::vector<std::string> filenames;
+
+namespace fs = boost::filesystem;
 
 // parameters
 const float FILTER_DISTANCE = 1.5;
@@ -65,7 +72,7 @@ const float DESCRIPTOR_RADIUS = 0.035f;
 
 int parseArgs (int argc, char **argv)
 {
-    int loadResult = 1;
+    int loadResult = 0;
     for (int argNr = 1; argNr < argc; argNr++)
     {
         char idBuf [32];
@@ -74,8 +81,12 @@ int parseArgs (int argc, char **argv)
         fpcf::fpcfPointCloudData<PointType, DescriptorType>::Ptr newPointCloud(new fpcf::fpcfPointCloudData<PointType, DescriptorType>(idBuf));
         std::string pcdFileName = std::string(argv[argNr]);
         fpcf::fpcfPointCloudReader<PointType, DescriptorType> *reader = new fpcf::fpcfPointCloudReader<PointType, DescriptorType>();
-        loadResult = reader->loadPCDFile("", pcdFileName, newPointCloud) == 0 && loadResult;
+        reader->loadPCDFile("", pcdFileName, newPointCloud) == 0 && loadResult;
         pointClouds.push_back(newPointCloud);
+
+        pcdFileName += ".fpcf.pcd";
+        filenames.push_back(pcdFileName);
+        loadResult++;
     }
     return loadResult;
 }
@@ -139,6 +150,12 @@ int main (int argc, char** argv)
         vis->addPointCloud(pointClouds.at(pcNr));
     }
     vis->visualize();
+
+    int idx = 0;
+    for (const auto& pcd : pointClouds)
+    {
+        pcl::io::savePCDFileBinary(filenames[idx++], *(pcd->getPointCloud()));
+    }
 
     cout << "Finished!" << endl;
 }
