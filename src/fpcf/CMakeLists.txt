@@ -32,9 +32,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
-set(SUBSYS_NAME fpcf)
-set(SUBSYS_DESC "Fast Point Cloud Fusion framework")
-
 # read srcs
 file(GLOB data_srcs
     ${CMAKE_CURRENT_SOURCE_DIR}/src/data/*.cpp)
@@ -145,12 +142,7 @@ source_group("Header Files\\segmentation" FILES
 source_group("Header Files\\tools" FILES
     ${tools_headers})
 
-set(_NAME ${SUBSYS_NAME})
-include_directories(${PCL_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)
-link_directories(${PCL_LIBRARY_DIRS})
-add_definitions(${PCL_DEFINITIONS})
-
-add_library(${_NAME} STATIC
+add_library(fpcf STATIC
     # add *.cpp
     ${data_srcs}
     ${filter_srcs}
@@ -183,14 +175,16 @@ add_library(${_NAME} STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include/fpcf/fpcfPrecompiled.h
     )
     
-target_link_libraries(${_NAME}
+target_link_libraries(fpcf
     ${PCL_KEYPOINTS_LIBRARIES}
     ${PCL_SEGMENTATION_LIBRARIES}
     ${PCL_REGISTRATION_LIBRARIES}
     ${PCL_SURFACE_LIBRARIES}
     ${PCL_VISUALIZATION_LIBRARIES}
     )
-    
+
+target_include_directories(fpcf PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)    
+
 # precompiled headers
 if (MSVC)
    set_target_properties(

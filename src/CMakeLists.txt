@@ -32,25 +32,51 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "configurations" FORCE)
 
-project(FastPointCloudFusion)
 
-# maybe only for msvc win32 builds:
-#add_definitions(-DEIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT -DEIGEN_DONT_ALIGN)
+######################################################################
+#
+# CMake Project Settings
+#
+######################################################################
+project(FastPointCloudFusion LANGUAGES C CXX)
+set(VERSION_MAJOR "1")
+set(VERSION_MINOR "0")
+set(VERSION_BugFix "0")
+set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-# special compiler flags for msvc
-if (MSVC)
-    # add big object file support
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
-    # workaround for C1027 error with precompiled headers
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zm500")
-    # activate multi-core compile
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
-endif (MSVC)
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj /MP /wd4996 /wd4819 /wd4251 /wd4267 /wd4244 /wd4275")
+    add_definitions(-DWIN32_LEAN_AND_MEAN -DNOMINMAX) # windows use windows api
+endif(MSVC)
+if(APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-inconsistent-missing-override -Wno-unused-command-line-argument -Wno-unused-result -Wno-exceptions")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
+endif(APPLE)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+option(FPCF_USE_GUI "Build Gui application, for kinect fusion" OFF)
+option(FPCF_USE_CLI "Build console application" ON)
+
+######################################################################
+#
+# Packages
+#
+######################################################################
+# PCL_MODULE_LIBRARIES
 find_package(PCL 1.7 REQUIRED COMPONENTS
     keypoints
     segmentation
@@ -59,6 +85,17 @@ find_package(PCL 1.7 REQUIRED COMPONENTS
     visualization
     )
 
-ADD_SUBDIRECTORY(fpcf)
-ADD_SUBDIRECTORY(fpcf_examples)
-ADD_SUBDIRECTORY(fpcf_gui)
+# Qt5::Module
+if(FPCF_USE_GUI)
+    find_package(Qt5 REQUIRED Core Gui Widgets OpenGL)    
+endif(FPCF_USE_GUI)
+
+add_subdirectory(fpcf)
+
+if(FPCF_USE_GUI)
+    add_subdirectory(fpcf_gui)
+endif(FPCF_USE_GUI)
+
+if(FPCF_USE_CLI)
+    add_subdirectory(fpcf_examples)
+endif(FPCF_USE_CLI)

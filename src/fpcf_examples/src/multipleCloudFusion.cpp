@@ -86,9 +86,9 @@ int main (int argc, char** argv)
     if (!parseArgs(argc, argv))
     {
         PCL_ERROR("Usage: \n");
-        PCL_ERROR("    multipleCloudFusion.exe PCDFILE1 FPCFFILE2 [FPCFFILE_N]* \n");
+        PCL_ERROR("    fpcf_multiple_cloud_fusion.exe PCDFILE1 FPCFFILE2 [FPCFFILE_N]* \n");
         PCL_ERROR("Example: \n");
-        PCL_ERROR("    multipleCloudFusion.exe points0000.pcd points0005.pcd");
+        PCL_ERROR("    fpcf_multiple_cloud_fusion.exe points0000.pcd points0005.pcd");
         return -1;
     }
     

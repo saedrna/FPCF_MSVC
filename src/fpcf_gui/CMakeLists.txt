@@ -32,13 +32,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
-set(SUBSYS_NAME fpcf_gui)
-set(SUBSYS_DESC "Fast Point Cloud Fusion GUI")
-
-find_package(Qt4 REQUIRED)
-
-add_definitions(-DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET)
-
 # read srcs
 file(GLOB control_fusion_srcs
     ${CMAKE_CURRENT_SOURCE_DIR}/src/control/fusion/*.cpp)
@@ -66,11 +59,6 @@ file(GLOB gui_resources
     
 # Qt stuff
 SET(QT_USE_QTOPENGL TRUE)
-INCLUDE(${QT_USE_FILE})
-ADD_DEFINITIONS(${QT_DEFINITIONS})
-QT4_WRAP_CPP(gui_headers_moc ${gui_headers})
-QT4_WRAP_UI(helloworld_forms_headers ${gui_forms})
-QT4_ADD_RESOURCES(helloworld_resources_rcc ${gui_resources})
 
 # create source groups for *.cpp
 source_group("Source Files\\control\\fusion" FILES
@@ -103,14 +91,13 @@ source_group("Qt\\Moc Files" FILES
 source_group("Qt\\Rcc Files" FILES
     ${helloworld_resources_rcc})
     
-set(_NAME ${SUBSYS_NAME})
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include 
     ${PROJECT_SOURCE_DIR}/fpcf/include ${PCL_INCLUDE_DIRS}
     ${CMAKE_CURRENT_BINARY_DIR}
     )
 
-add_executable(${_NAME}
+add_executable(fpcf_gui
     # add *.cpp
     ${control_fusion_srcs}
     ${control_guiStates_srcs}
@@ -132,11 +119,13 @@ add_executable(${_NAME}
     ${gui_resources}
     )
     
-target_link_libraries(${_NAME}
+target_link_libraries(fpcf_gui
     fpcf
-    QVTK
-    ${QT_LIBRARIES}
-    )
+    Qt5::Core
+    Qt5::Gui
+    Qt5::OpenGL
+    Qt5::Widgets
+)
     
 # precompiled headers
 if (MSVC)

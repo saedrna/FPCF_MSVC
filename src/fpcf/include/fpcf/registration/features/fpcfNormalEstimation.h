@@ -192,7 +192,7 @@ namespace fpcf
     void
     fpcf::fpcfNormalEstimation<PointT, DescriptorT>::estimatePointNormals()
     {
-        pcl::search::KdTree<PointT>::Ptr kdTree(new pcl::search::KdTree<PointT>(pointCloud_->getPointCloud()));
+        pcl::search::KdTree<PointT>::Ptr kdTree = boost::make_shared<pcl::search::KdTree<PointT>>();
         normalEstimator_->setSearchMethod(kdTree);
         normalEstimator_->setRadiusSearch(searchRadius_);
         normalEstimator_->setInputCloud(pointCloud_->getPointCloud());

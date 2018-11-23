@@ -211,7 +211,9 @@ namespace fpcf
     void
     fpcf::fpcfFPFHDescriptor<PointT>::init()
     {
-        pcl::search::KdTree<PointT>::Ptr kdTree(new pcl::search::KdTree<PointT>(pointCloud_->getPointCloud()));
+        pcl::search::KdTree<PointT>::Ptr kdTree = boost::make_shared<pcl::search::KdTree<PointT>>();
+        
+        fpfh_->setInputCloud(pointCloud_->getPointCloud());
         fpfh_->setInputNormals(pointCloud_->getNormalsCloud());
         fpfh_->setSearchMethod(kdTree);
     }

@@ -32,16 +32,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
-set(SUBSYS_NAME examples)
-set(SUBSYS_DESC "Fast Point Cloud Fusion examples")
-
 # read srcs
 file(GLOB multiple_cloud_fusion_src ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-
-
-set(_NAME fpcf_example)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/fpcf/include ${PCL_INCLUDE_DIRS})
-
-add_executable(${_NAME}_multiple_cloud_fusion ${multiple_cloud_fusion_src})
-
-target_link_libraries(${_NAME}_multiple_cloud_fusion fpcf)
+add_executable(fpcf_multiple_cloud_fusion ${multiple_cloud_fusion_src})
+target_link_libraries(fpcf_multiple_cloud_fusion fpcf)
