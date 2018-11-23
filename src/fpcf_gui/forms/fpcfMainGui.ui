@@ -1,0 +1,1526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainGui</class>
+ <widget class="QMainWindow" name="MainGui">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>916</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Fast Point Cloud Fusion GUI</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_Controls">
+      <item>
+       <spacer name="horizontalSpacer_left">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_Input">
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Input</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_Prepared">
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Prepared</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_SingleFusion">
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Single Fusion</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_ContinuousFusion">
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Continuous Fusion</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_Mesh">
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Mesh</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_right">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QVTKWidget" name="widget_Visualizer" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 0, 0);</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="2" column="1">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_KinectSensorInitialization">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>Please wait for Kinect sensor initialization!</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_ControlCenter">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>265</width>
+     <height>425</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>265</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Control Center</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QToolBox" name="toolBox">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="page_Input">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>247</width>
+          <height>592</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>Input</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QGroupBox" name="groupBox_Kinect">
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="title">
+            <string>Kinect</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_NrDevices">
+              <property name="text">
+               <string>#devices</string>
+              </property>
+              <property name="buddy">
+               <cstring>spinBox_NrDevices</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_NrDevices">
+              <property name="maximum">
+               <number>16</number>
+              </property>
+              <property name="value">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QPushButton" name="pushButton_Stop">
+              <property name="text">
+               <string>stop</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="pushButton_Start">
+              <property name="text">
+               <string>start</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="2">
+             <widget class="QPushButton" name="pushButton_CaptureInput">
+              <property name="text">
+               <string>capture Input</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_segment_hsv">
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="title">
+            <string>Point Clouds</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+             <widget class="QPushButton" name="pushButton_AddPointCloud">
+              <property name="text">
+               <string>add</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QPushButton" name="pushButton_RemoveAllPointClouds">
+              <property name="text">
+               <string>remove all</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_Color">
+              <property name="text">
+               <string>Color</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="comboBox_Color">
+              <item>
+               <property name="text">
+                <string>normal</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>random</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Input">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_Preparation">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>237</width>
+          <height>361</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>Preparation</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QGroupBox" name="groupBox_Filter">
+           <property name="title">
+            <string>Filter</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_VoxelgridSize">
+              <property name="text">
+               <string>Voxelgrid size</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_OutlinerRadius">
+              <property name="text">
+               <string>Outliner radius</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_OutlinerRadius">
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>10.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.500000000000000</double>
+              </property>
+              <property name="value">
+               <double>2.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QSpinBox" name="spinBox_MaxPlaneSize">
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>200000</number>
+              </property>
+              <property name="value">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_VoxelgridSize">
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_MaxPlaneSize">
+              <property name="text">
+               <string>max. Plane size</string>
+              </property>
+              <property name="buddy">
+               <cstring>spinBox_MaxPlaneSize</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_FilterDistance">
+              <property name="text">
+               <string>Filter distance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_FilterDistance">
+              <property name="maximum">
+               <number>1500</number>
+              </property>
+              <property name="value">
+               <number>150</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_Features">
+           <property name="title">
+            <string>Features</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_Detector">
+              <property name="text">
+               <string>Detector</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QComboBox" name="comboBox_Detector">
+              <item>
+               <property name="text">
+                <string>none</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Narf</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Sift</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QComboBox" name="comboBox_Descriptor">
+              <item>
+               <property name="text">
+                <string>FPFH</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>PFH</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>PFHRGB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Shot</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Shot Color</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_Descriptor">
+              <property name="text">
+               <string>Descriptor</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_NormalEstRadius">
+              <property name="text">
+               <string>normal est. radius</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_NormalEstRadius">
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="minimum">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>20.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value">
+               <double>3.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBox_ShowNormals">
+              <property name="text">
+               <string>show Normals</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_DescriptorRadius">
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="minimum">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>20.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value">
+               <double>3.500000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBox_PersistantFeatures">
+              <property name="text">
+               <string>Persistant Features</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_DescriptorRadius">
+              <property name="text">
+               <string>Descriptor Radius</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBox_ShowKeypoints">
+              <property name="text">
+               <string>show Keypoints</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Preparation">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_Fusion">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>190</width>
+          <height>185</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>Fusion</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QGroupBox" name="groupBox_Correspondences">
+           <property name="title">
+            <string>Correspondences</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_RansacIter">
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_RansacIter">
+              <property name="text">
+               <string>Ransac iter.</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_Alignment">
+           <property name="title">
+            <string>Alignment</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_PairICPIter">
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>10</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_PairICPIter">
+              <property name="text">
+               <string>Pair-ICP iter.</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="spinBox_GlobalLuMIter">
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="value">
+               <number>3</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_GlobalLuMIter">
+              <property name="text">
+               <string>LuM-Global iter.</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBox_ShowPrepared">
+              <property name="text">
+               <string>show Prepared</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Fusion">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_Mesh">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>168</width>
+          <height>185</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <attribute name="label">
+         <string>Mesh</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QGroupBox" name="groupBox_Filters">
+           <property name="title">
+            <string>Filters</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_MeshVoxelgridSize">
+              <property name="text">
+               <string>Voxelgrid size</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_PassbandValue">
+              <property name="decimals">
+               <number>3</number>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="value">
+               <double>0.075000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_PassbandValue">
+              <property name="text">
+               <string>Passband value</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_MeshVoxelgridSize">
+              <property name="decimals">
+               <number>2</number>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+              <property name="value">
+               <double>0.750000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_MeshOutlinerRadius">
+              <property name="text">
+               <string>Outliner radius</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_MeshOutlinerRadius">
+              <property name="decimals">
+               <number>2</number>
+              </property>
+              <property name="minimum">
+               <double>0.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>10.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.200000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_Color">
+           <property name="title">
+            <string>Color</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_9">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBox_TransferPointColors">
+              <property name="text">
+               <string>transfer Point Colors</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Mesh">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>916</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>Save As...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QVTKWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">QVTKWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>toolButton_Input</tabstop>
+  <tabstop>toolButton_Prepared</tabstop>
+  <tabstop>toolButton_SingleFusion</tabstop>
+  <tabstop>toolButton_ContinuousFusion</tabstop>
+  <tabstop>toolButton_Mesh</tabstop>
+  <tabstop>spinBox_NrDevices</tabstop>
+  <tabstop>pushButton_Start</tabstop>
+  <tabstop>pushButton_Stop</tabstop>
+  <tabstop>pushButton_CaptureInput</tabstop>
+  <tabstop>pushButton_AddPointCloud</tabstop>
+  <tabstop>pushButton_RemoveAllPointClouds</tabstop>
+  <tabstop>comboBox_Color</tabstop>
+  <tabstop>spinBox_FilterDistance</tabstop>
+  <tabstop>doubleSpinBox_VoxelgridSize</tabstop>
+  <tabstop>spinBox_MaxPlaneSize</tabstop>
+  <tabstop>doubleSpinBox_OutlinerRadius</tabstop>
+  <tabstop>checkBox_ShowNormals</tabstop>
+  <tabstop>doubleSpinBox_NormalEstRadius</tabstop>
+  <tabstop>checkBox_PersistantFeatures</tabstop>
+  <tabstop>comboBox_Detector</tabstop>
+  <tabstop>checkBox_ShowKeypoints</tabstop>
+  <tabstop>comboBox_Descriptor</tabstop>
+  <tabstop>doubleSpinBox_DescriptorRadius</tabstop>
+  <tabstop>spinBox_RansacIter</tabstop>
+  <tabstop>spinBox_PairICPIter</tabstop>
+  <tabstop>spinBox_GlobalLuMIter</tabstop>
+  <tabstop>checkBox_ShowPrepared</tabstop>
+  <tabstop>doubleSpinBox_MeshVoxelgridSize</tabstop>
+  <tabstop>doubleSpinBox_MeshOutlinerRadius</tabstop>
+  <tabstop>doubleSpinBox_PassbandValue</tabstop>
+  <tabstop>checkBox_TransferPointColors</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>toolButton_Input</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>toolButton_Input_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>195</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>MainGui</receiver>
+   <slot>actionAbout_Triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainGui</receiver>
+   <slot>actionQuit_Triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveAs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainGui</receiver>
+   <slot>actionSaveAs_Triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_PersistantFeatures</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>MainGui</receiver>
+   <slot>checkBox_PersistantFeatures_StateChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>778</x>
+     <y>340</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_Color</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainGui</receiver>
+   <slot>comboBox_Color_CurrentIndexChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>887</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_Descriptor</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainGui</receiver>
+   <slot>comboBox_Descriptor_CurrentIndexChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>887</x>
+     <y>415</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_Detector</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainGui</receiver>
+   <slot>comboBox_Detector_CurrentIndexChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>887</x>
+     <y>366</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>doubleSpinBox_DescriptorRadius</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>MainGui</receiver>
+   <slot>doubleSpinBox_DescriptorRadius_ValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>887</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>doubleSpinBox_NormalEstRadius</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>MainGui</receiver>
+   <slot>doubleSpinBox_NormalEstRadius_ValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>887</x>
+     <y>317</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>doubleSpinBox_OutlinerRadius</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>MainGui</receiver>
+   <slot>doubleSpinBox_OutlinerRadius_ValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>886</x>
+     <y>235</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>doubleSpinBox_VoxelgridSize</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>MainGui</receiver>
+   <slot>doubleSpinBox_VoxelgridSize_ValueChanged(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>886</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_AddPointCloud</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>pushButton_AddPointCloud_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>780</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_CaptureInput</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>pushButton_CaptureInput_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>887</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Start</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>pushButton_Start_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>780</x>
+     <y>159</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_RemoveAllPointClouds</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>pushButton_RemoveAllPointClouds_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>887</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_FilterDistance</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainGui</receiver>
+   <slot>spinBox_FilterDistance_ValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>886</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_GlobalLuMIter</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainGui</receiver>
+   <slot>spinBox_GlobalLuMIter_ValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>886</x>
+     <y>269</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_MaxPlaneSize</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainGui</receiver>
+   <slot>spinBox_MaxPlaneSize_ValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>886</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_PairICPIter</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainGui</receiver>
+   <slot>spinBox_PairICPIter_ValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>886</x>
+     <y>243</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_RansacIter</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainGui</receiver>
+   <slot>spinBox_RansacIter_ValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>886</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_ContinuousFusion</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>toolButton_ContinuousFusion_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>446</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_Mesh</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>toolButton_Mesh_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>490</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_Prepared</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>toolButton_Prepared_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>258</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_SingleFusion</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>toolButton_SingleFusion_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>339</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Stop</sender>
+   <signal>clicked()</signal>
+   <receiver>MainGui</receiver>
+   <slot>pushButton_Stop_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>837</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>457</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionHelp</sender>
+   <signal>triggered()</signal>
+   <receiver>MainGui</receiver>
+   <slot>actionHelp_Triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>457</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>MainGui</receiver>
+   <slot>actionNew_Triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>457</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>toolButton_Input_Clicked()</slot>
+  <slot>toolButton_Prepared_Clicked()</slot>
+  <slot>toolButton_SingleFusion_Clicked()</slot>
+  <slot>toolButton_ContinuousFusion_Clicked()</slot>
+  <slot>toolButton_Mesh_Clicked()</slot>
+  <slot>actionAbout_Triggered()</slot>
+  <slot>actionHelp_Triggered()</slot>
+  <slot>actionQuit_Triggered()</slot>
+  <slot>actionSaveAs_Triggered()</slot>
+  <slot>checkBox_PersistantFeatures_StateChanged(int)</slot>
+  <slot>comboBox_Color_CurrentIndexChanged(QString)</slot>
+  <slot>comboBox_Descriptor_CurrentIndexChanged(QString)</slot>
+  <slot>comboBox_Detector_CurrentIndexChanged(QString)</slot>
+  <slot>doubleSpinBox_DescriptorRadius_ValueChanged(double)</slot>
+  <slot>doubleSpinBox_NormalEstRadius_ValueChanged(double)</slot>
+  <slot>doubleSpinBox_OutlinerRadius_ValueChanged(double)</slot>
+  <slot>doubleSpinBox_VoxelgridSize_ValueChanged(double)</slot>
+  <slot>pushButton_AddPointCloud_Clicked()</slot>
+  <slot>pushButton_CaptureInput_Clicked()</slot>
+  <slot>pushButton_Start_Clicked()</slot>
+  <slot>pushButton_RemoveAllPointClouds_Clicked()</slot>
+  <slot>spinBox_FilterDistance_ValueChanged(int)</slot>
+  <slot>spinBox_GlobalLuMIter_ValueChanged(int)</slot>
+  <slot>spinBox_MaxPlaneSize_ValueChanged(int)</slot>
+  <slot>spinBox_PairICPIter_ValueChanged(int)</slot>
+  <slot>spinBox_RansacIter_ValueChanged(int)</slot>
+  <slot>pushButton_Stop_Clicked()</slot>
+  <slot>actionNew_Triggered()</slot>
+ </slots>
+</ui>
